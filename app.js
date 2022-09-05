@@ -11,6 +11,9 @@ const AppError = require('./utils/appError');
 const app = express();
 
 app.use(cors('*'));
+app.get('', (req, res) => {
+  res.json({ name: 'Caviar Honey API', v: 'v0.0.0' });
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
