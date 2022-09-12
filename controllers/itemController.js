@@ -1,6 +1,6 @@
 const Item = require('../models/Item');
-const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.getAllItems = catchAsync(async (req, res) => {
   const items = await Item.find({ owner: req.user._id });
@@ -17,7 +17,7 @@ exports.getAllItems = catchAsync(async (req, res) => {
 exports.getItemById = catchAsync(async (req, res) => {
   const item = await Item.findById(req.params.id);
 
-  if (!item) throw new AppError('No itemfound', 404);
+  if (!item) throw new AppError('No item found');
 
   res.status(200).json({
     status: 'success',
@@ -33,6 +33,8 @@ exports.createItem = catchAsync(async (req, res) => {
 
   const item = await Item.create(data);
 
+  if (!item) throw new AppError('No item found');
+
   res.status(201).json({
     status: 'success',
     data: {
@@ -46,9 +48,9 @@ exports.updateItemById = catchAsync(async (req, res) => {
     new: true,
   });
 
-  if (!item) throw new AppError('No item found', 404);
+  if (!item) throw new AppError('No item found');
 
-  res.status(200).json({
+  res.status(201).json({
     status: 'success',
     data: {
       item,
@@ -59,7 +61,7 @@ exports.updateItemById = catchAsync(async (req, res) => {
 exports.deleteItemById = catchAsync(async (req, res) => {
   const item = await Item.findByIdAndDelete(req.params.id);
 
-  if (!item) throw new AppError('No item found', 404);
+  if (!item) throw new AppError('No item found');
 
   res.status(204).json({
     status: 'success',
