@@ -3,7 +3,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.getAllItems = catchAsync(async (req, res) => {
-  const items = await Item.find({ owner: req.user._id });
+  const items = await Item.find();
 
   res.status(200).json({
     status: 'success',
