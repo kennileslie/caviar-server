@@ -10,7 +10,7 @@ const AppError = require('./utils/appError');
 
 const app = express();
 
-app.use(cors('*'));
+app.use(cors('https://caviar-honey-ea21f.web.app'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
