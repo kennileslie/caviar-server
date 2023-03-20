@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 mongoose
-  .connect(process.env.DB_URL)
+  .connect(
+    'mongodb+srv://apiarist:IT0CcH57GfEXfGyW@root.eoghyad.mongodb.net/?retryWrites=true&w=majority'
+  )
   .then(() => console.log('Connected to database...'))
   .catch((err) => {
     console.error(err);
