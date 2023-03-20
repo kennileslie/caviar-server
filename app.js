@@ -10,7 +10,7 @@ const AppError = require('./utils/appError');
 
 const app = express();
 
-app.use(cors('https://caviar-honey.vercel.app'));
+app.use(cors({ origin: 'https://caviar-honey.vercel.app' }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
